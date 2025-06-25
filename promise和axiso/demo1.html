@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="btn">发送请求</button>
+
+
+    <script>
+
+        const btn = document.querySelector('.btn')
+
+        btn.onclick = function () {
+
+            //生成1到100的随机数
+
+            const num = Math.floor(Math.random() * 100 + 1)
+
+            console.log(num)
+            //promise构造函数参数是函数类型的数据
+            const p = new Promise((resolve, reject) => {
+
+                setTimeout(() => {
+
+                    if (num < 30) {
+
+                        resolve(num) //将promise状态设为成功
+
+                    } else {
+
+                        reject(num)//将promise状态设为失败
+
+                    }
+
+                }, 2000)
+
+            })
+            p.then((value) => {
+
+                alert('恭喜你，中奖了' + value)
+            }, //成功调用
+                (reason) => {
+
+                    alert('下次再接再厉' + reason)
+                } //失败调用
+            )
+
+        }
+    </script>
+</body>
+
+</html>

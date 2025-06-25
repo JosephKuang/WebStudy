@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <button>发送请求</button>
+    <button>取消请求</button>
+
+
+
+
+
+    <script>
+        const btns = document.querySelectorAll('button')
+        const CancelToken = axios.CancelToken;
+        let cancel = null;
+
+
+        btns[0].onclick = function () {
+            if (cancel !== null) {
+                cancel()
+            }
+            axios.get('http://localhost:3000/posts/03f4', {
+                cancelToken: new CancelToken(function executor(c) {
+                    // An executor function receives a cancel function as a parameter
+                    cancel = c;
+                })
+            }).then(res => {
+                console.log(res.data)
+                cancel = null
+            })
+        }
+        btns[1].onclick = function () {
+            cancel()
+        }
+
+    </script>
+</body>
+
+</html>

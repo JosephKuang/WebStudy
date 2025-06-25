@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <button class="btn btn-primary ">Get</button>
+    <button class="post">Post</button>
+    <button class="put">Put</button>
+    <button class="delete">Delete</button>
+    
+
+
+    <script>
+
+        const instance = axios.create();
+
+        // Add a request interceptor
+        instance.interceptors.request.use(function (config) {
+            // Do something before request is sent
+            return config;
+        }, function (error) {
+            // Do something with request error
+            return Promise.reject(error);
+        });
+
+        const btns = document.querySelectorAll('button')
+        btns[0].onclick = function () {
+            console.log('开始请求')
+            axios({
+                method: 'get',
+                url: 'http://localhost:3000/posts/03f4',
+                // timeout: 1000,
+
+            }).then(value => {
+                console.log(value.data)
+
+            }, reason => {
+                console.log("失败了")
+            })
+        }
+
+        btns[1].onclick = function () {
+            axios({
+                method: 'post',
+                url: 'http://localhost:3000/posts',
+                data: {
+                    title: 'hello world',
+                    views: 300
+                }
+
+            }).then(value => {
+                console.log(value.data)
+
+            }, reason => {
+                console.log("失败了")
+            })
+        }
+
+        btns[3].onclick = function () {
+            axios({
+                method: 'delete',
+                url: 'http://localhost:3000/posts/1',
+
+            }).then(value => {
+                console.log("成功了")
+
+            }, reason => {
+                console.log("失败了")
+            })
+        }
+    </script>
+</body>
+
+</html>

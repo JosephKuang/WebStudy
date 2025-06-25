@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./demo01.js"></script>
+</head>
+
+<body>
+
+    <script>
+        let p = new Promise((resolve, reject) => {
+            // setTimeout(() => { resolve('111')},1000)
+            // reject('成功')
+            resolve('成功')
+            console.log('111')
+               
+    
+        });
+
+        // console.log(p)
+
+    p.then(value => {
+            console.log(222)
+            // return 'hello world';
+            // throw "抛出错误"
+        }, reason => {
+            console.log(reason)
+            return 'hello world';
+        })
+
+        console.log(333)
+       
+        
+       
+    </script>
+</body>
+
+</html>
