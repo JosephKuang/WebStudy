@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>添加记录</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .form-card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      padding: 30px;
+      width: 100%;
+      max-width: 500px;
+      box-sizing: border-box;
+    }
+
+    .form-card h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+      font-size: 24px;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 24px;
+      background: linear-gradient(to right, #3498db, #5dade2);
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #2980b9, #3498db);
+    }
+
+    .link-back {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .link-back:hover {
+      text-decoration: underline;
+      color: #2d7dbf;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-card">
+    <h2>添加记录</h2>
+    <form action="/account" method="POST">
+      <label for="title">事项</label>
+      <input type="text" id="title" name="title" required>
+
+      <label for="time">时间</label>
+      <input type="datetime-local" id="time" name="time" required>
+
+      <label for="type">类型</label>
+      <select id="type" name="type" required>
+        <option value="-1">支出</option>
+        <option value="1">收入</option>
+      </select>
+
+      <label for="amount">金额</label>
+      <input type="number" id="amount" name="amount" step="0.01" required>
+
+      <label for="note">备注</label>
+      <textarea id="note" name="note" rows="3" placeholder="可选填写备注"></textarea>
+
+      <button type="submit">➕ 添加记录</button>
+      <a href="/account" class="link-back">📋 查看列表</a>
+    </form>
+  </div>
+</body>
+</html>
